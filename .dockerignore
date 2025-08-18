@@ -1,0 +1,70 @@
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments  
+venv/
+env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+# Data files
+data/
+datasets/
+*.csv
+*.h5
+*.hdf5
+*.pkl
+
+# Model files
+models/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.weights
+
+# Logs
+logs/
+*.log
+tensorboard/
+runs/
+
+# Results
+outputs/
+results/
+*.png
+*.jpg
+*.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+Makefile
+
+# Docs
+README.md
+*.md
+
+# Config 
+.env
+*.yaml
+*.json

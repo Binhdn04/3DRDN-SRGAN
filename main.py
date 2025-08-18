@@ -1,26 +1,15 @@
-from training import main_loop
-from arg_parser import training_parser
+import yaml
+import os
+from src.models import get_model
+from src.training import get_trainer
 
-def main():
-	args = training_parser().parse_args()
-
-	LR                    = args.learning_rate
-	DB                    = args.dense_blocks
-	DU                    = args.dense_units
-	MODEL                 = args.model
-	EPOCHS                = args.epochs
-	CRIT_ITER             = args.crit_iter
-	BATCH_SIZE            = args.batch_size
-	LAMBDA_ADV            = args.lambda_adv
-	LAMBDA_IDT            = args.lambda_idt
-	LAMBDA_CYC            = args.lambda_cyc
-	TRAIN_ONLY            = args.train_only
-	EPOCH_START           = args.epoch_start
-	LAMBDA_GRD_PEN        = args.lambda_grd_pen
-
-	main_loop(LR, DB, DU, EPOCHS, BATCH_SIZE, EPOCH_START, LAMBDA_ADV, LAMBDA_GRD_PEN,
-	 LAMBDA_CYC, LAMBDA_IDT, CRIT_ITER, TRAIN_ONLY, MODEL)
-
-
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    os.makedirs("checkpoints/tensor_checkpoints/generator_checkpoint/G", exist_ok=True)
+    os.makedirs("checkpoints/tensor_checkpoints/discriminator_checkpoint/Y", exist_ok=True)
+    os.makedirs("results/plots/training", exist_ok=True)
+    os.makedirs("results/plots/validation", exist_ok=True)
+    
+    config = yaml.safe_load(open("configs/default.yaml"))
+    
+    trainer = get_trainer(config["training"]["version"])
+    trainer(None, config)
